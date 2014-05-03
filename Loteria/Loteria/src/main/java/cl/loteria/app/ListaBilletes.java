@@ -1,6 +1,7 @@
 package cl.loteria.app;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.net.HttpURLConnection;
 
 public class ListaBilletes extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -145,4 +157,48 @@ public class ListaBilletes extends ActionBarActivity
         }
     }
 
+    private class MyAsyncTask extends AsyncTask<String, Integer, Double> {
+
+        @Override
+        protected Double doInBackground(String... params) {
+            // TODO Auto-generated method stub
+            getData(params[0]);
+            return null;
+        }
+
+        protected void onPostExecute(Double result) {
+
+        }
+
+        protected void onProgressUpdate(Integer... progress) {
+
+        }
+
+        public void getData(String ticketNumber) {
+            try{
+                URL url = new URL("http://www.loteria.cl/KinoASP/procesa_consulta_kinoP3V2i016CJNK.asp?onHTTPStatus=%5Btype%20Function%5D&Nconsulta=1&panel=0&DV=&Rut=&boleto=0" + ticketNumber + "&sorteo=0");
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                try {
+                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    StringBuilder out = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        out.append(line);
+                    }
+                    System.out.println(out.toString());   //Prints the string content read from input stream
+                    reader.close();
+                }
+                finally {
+                        urlConnection.disconnect();
+                }
+            }catch(Exception e){
+
+            }
+        }
+    }
+
 }
+
+

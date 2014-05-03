@@ -1,0 +1,26 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'update', '-g' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.28
+4 verbose node symlink /usr/local/bin/node
+5 error Error: Cannot find module './make_warning'
+5 error     at Function.Module._resolveFilename (module.js:338:15)
+5 error     at Function.Module._load (module.js:280:25)
+5 error     at Module.require (module.js:364:17)
+5 error     at require (module.js:380:17)
+5 error     at Object.<anonymous> (/usr/local/Cellar/node/0.10.26/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/normalize.js:4:19)
+5 error     at Module._compile (module.js:456:26)
+5 error     at Object.Module._extensions..js (module.js:474:10)
+5 error     at Module.load (module.js:356:32)
+5 error     at Function.Module._load (module.js:312:12)
+5 error     at Module.require (module.js:364:17)
+6 error If you need help, you may report this *entire* log,
+6 error including the npm and node versions, at:
+6 error     <http://github.com/npm/npm/issues>
+7 error System Darwin 13.1.0
+8 error command "/usr/local/bin/node" "/usr/local/bin/npm" "update" "-g"
+9 error cwd /Users/Eduardo/Developer/Loteria
+10 error node -v v0.10.28
+11 error npm -v 1.4.9
+12 error code MODULE_NOT_FOUND
+13 verbose exit [ 1, true ]
