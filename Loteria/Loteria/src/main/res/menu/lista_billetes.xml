@@ -4,13 +4,12 @@
     tools:context="cl.loteria.app.ListaBilletes" >
     <item android:id="@+id/action_example"
         android:title="@string/action_example"
-        app:showAsAction="withText|ifRoom" />
+        app:showAsAction="never" />
     <item android:id="@+id/action_capture"
         android:icon="@drawable/ic_launcher"
         android:title="@string/action_capture"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>

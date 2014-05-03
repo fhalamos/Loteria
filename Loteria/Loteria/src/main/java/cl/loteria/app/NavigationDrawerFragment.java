@@ -258,6 +258,11 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
+        if (item.getItemId() == R.id.action_capture) {
+            Toast.makeText(getActivity(), "Sacar foto de billete!", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
