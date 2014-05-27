@@ -18,5 +18,7 @@
     <string name="title_activity_captura_billete">Ingreso de Billete</string>
     <string name="title_activity_display_imagen">Previsualización</string>
     <string name="back_image_button">Volver</string>
+    <string name="title_activity_camera_test">CameraTestActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

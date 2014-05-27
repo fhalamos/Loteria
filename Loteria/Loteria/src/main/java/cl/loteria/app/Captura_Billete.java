@@ -123,6 +123,7 @@ public class Captura_Billete extends ActionBarActivity {
     public void go_to_display(View v)
     {
         startActivity(new Intent(this, Display_Imagen.class));
+        //startActivity(new Intent(this, CameraTestActivity.class));
     }
 
     //Se inicia la camara para tomar foto del billete

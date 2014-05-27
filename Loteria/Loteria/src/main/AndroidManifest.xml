@@ -45,6 +45,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cl.loteria.app.Captura_Billete" />
         </activity>
+        <activity
+            android:name="cl.loteria.app.CameraTestActivity"
+            android:label="@string/title_activity_camera_test" >
+        </activity>
     </application>
 
 </manifest>
