@@ -1,5 +1,8 @@
 package cl.loteria.app;
 
+import android.app.AlertDialog;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -19,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -85,7 +89,8 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+        if(mCurrentSelectedPosition != 0)
+            selectItem(mCurrentSelectedPosition);
     }
 
     @Override
@@ -253,17 +258,89 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.action_reload) {
+            Toast.makeText(getActivity(), "Volver a cargar resultados.", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_borrar) {
+            Toast.makeText(getActivity(), "Eliminando Billete.", Toast.LENGTH_SHORT).show();
+            Controlador_Lista.borrar(mCurrentSelectedPosition);
+            if(mCurrentSelectedPosition != 0)
+                mCurrentSelectedPosition--;
+            mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                    getActionBar().getThemedContext(),
+                    android.R.layout.simple_list_item_activated_1,
+                    android.R.id.text1,
+                    Controlador_Lista.getNombres()
+            ));
+            mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+
+            return true;
+        }
+
+        if (item.getItemId() == R.id.action_renombrar) {
+            Toast.makeText(getActivity(), "Renombrando Billete.", Toast.LENGTH_SHORT).show();
+            inputRenombrar(mCurrentSelectedPosition);
             return true;
         }
 
         if (item.getItemId() == R.id.action_capture) {
-            Toast.makeText(getActivity(), "Sacar foto de billete!", Toast.LENGTH_SHORT).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void inputRenombrar(final int index)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+        alert.setTitle(Controlador_Lista.getNombre(index));
+        alert.setMessage("Ingrese nuevo nombre:");
+
+        // Set an EditText view to get user input
+        final EditText input = new EditText(getActivity());
+        alert.setView(input);
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                String value = input.getText().toString();
+                Controlador_Lista.renombrar(index, value);
+                mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                        getActionBar().getThemedContext(),
+                        android.R.layout.simple_list_item_activated_1,
+                        android.R.id.text1,
+                        Controlador_Lista.getNombres()
+                )); 
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                // Canceled.
+            }
+        });
+
+        alert.show();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                Controlador_Lista.getNombres()
+        ));
+        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
     }
 
     /**
