@@ -68,8 +68,12 @@ public class Captura_Billete extends ActionBarActivity {
     {
         InputMethodManager inputMethodManager = (InputMethodManager)  this.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-        int largo = ((EditText)findViewById(R.id.nombre)).getText().toString().length();
-        ((Button)findViewById(R.id.ok_button)).setEnabled((largo>0 && largo <=16));
+        EditText et = (EditText)findViewById(R.id.nombre);
+        String msg = et.getText().toString();
+        msg = msg.replace("\n","");
+        msg = msg.replace(Controlador_Lista.getSeparador(),"?");
+        et.setText(msg);
+        ((Button)findViewById(R.id.ok_button)).setEnabled((msg.length() > 0 && msg.length() <= 16));
     }
 
     //Controladores para esconder teclado cuando campo de texto pierde foco
@@ -114,6 +118,11 @@ public class Captura_Billete extends ActionBarActivity {
         String tipo = sp.getSelectedItem().toString();
         Controlador_Lista.setBillete(nombre,"0101010101",tipo,"Lo siento, perdió");
         this.finish();
+    }
+
+    public void go_to_display(View v)
+    {
+        startActivity(new Intent(this, Display_Imagen.class));
     }
 
     //Se inicia la camara para tomar foto del billete

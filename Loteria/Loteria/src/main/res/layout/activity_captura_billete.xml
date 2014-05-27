@@ -45,7 +45,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="match_parent"
-                android:id="@+id/previsualizacion"/>
+                android:id="@+id/previsualizacion"
+                android:onClick="go_to_display"/>
 
             <Button
                 android:layout_width="0dp"

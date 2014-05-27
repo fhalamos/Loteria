@@ -2,13 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cl.loteria.app" >
 
-    <uses-sdk android:minSdkVersion="9"/>
+    <uses-sdk android:minSdkVersion="9" />
+
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
-
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -25,12 +28,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="Captura_Billete"
-            android:label="@string/title_activity_captura__billete"
+            android:name="cl.loteria.app.Captura_Billete"
+            android:label="@string/title_activity_captura_billete"
             android:parentActivityName="cl.loteria.app.ListaBilletes" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cl.loteria.app.ListaBilletes" />
+        </activity>
+        <activity
+            android:name="cl.loteria.app.Display_Imagen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_display_imagen"
+            android:parentActivityName="cl.loteria.app.Captura_Billete"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cl.loteria.app.Captura_Billete" />
         </activity>
     </application>
 

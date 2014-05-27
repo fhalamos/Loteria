@@ -18,6 +18,8 @@ public class Controlador_Lista
 {
     private static File BD;
     private static String separador = "%#%";
+    public static String getSeparador()
+    { return separador; }
     private static String EOF = "%@%";
 
     //Inicializa el sistema de archivos. Si no hay archivo, retorna false

@@ -75,6 +75,10 @@ public class ListaBilletes extends ActionBarActivity
         }
     }
 
+    public void onNavigationDrawerItemErased(int position) {
+        //((DrawerLayout)findViewById(R.id.drawer_layout)).openDrawer(findViewById(R.id.drawer_layout));
+    }
+
     public void onSectionAttached(int number) {
         mTitle = Controlador_Lista.getNombre(number - 1);
     }

@@ -3,6 +3,7 @@ package cl.loteria.app;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -275,6 +276,7 @@ public class NavigationDrawerFragment extends Fragment {
                     Controlador_Lista.getNombres()
             ));
             mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+            //mCallbacks.onNavigationDrawerItemErased(mCurrentSelectedPosition);
 
             return true;
         }
@@ -366,5 +368,6 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+        void onNavigationDrawerItemErased(int position);
     }
 }

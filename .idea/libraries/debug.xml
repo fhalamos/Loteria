@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Loteria/Loteria/build/pre-dexed/debug/classes-665365a57cc280b0b9085a8e4e7173cdcfaa7854.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Loteria/Loteria/build/pre-dexed/debug/classes-1bca531834a39ad0f35a243d67e27312ab86ab76.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Loteria/Loteria/build/pre-dexed/debug/support-v4-19.1.0-514c885e96b06bff6275f011dcaa448032fdb3da.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
