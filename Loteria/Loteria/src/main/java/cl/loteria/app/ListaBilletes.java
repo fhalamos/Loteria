@@ -1,9 +1,11 @@
 package cl.loteria.app;
 
 import android.app.Activity;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -20,8 +22,15 @@ import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -170,17 +179,18 @@ public class ListaBilletes extends ActionBarActivity
         }
     }
 
-
-    private class MyAsyncTask extends AsyncTask<String, Integer, Double> {
+    private class MyAsyncTask extends AsyncTask<String, Integer, String> {
 
         @Override
-        protected Double doInBackground(String... params) {
+        protected String doInBackground(String... params) {
             // TODO Auto-generated method stub
-            getData(params[0]);
-            return null;
+            return getData(params[0]);
         }
 
-        protected void onPostExecute(Double result) {
+        protected void onPostExecute(String result) {
+            System.out.println(result);   //Prints the string content read from input stream
+
+
 
         }
 
@@ -188,7 +198,9 @@ public class ListaBilletes extends ActionBarActivity
 
         }
 
-        public void getData(String ticketNumber) {
+
+        public String getData(String ticketNumber) {
+
             try{
                 URL url = new URL("http://www.loteria.cl/KinoASP/procesa_consulta_kinoP3V2i016CJNK.asp?onHTTPStatus=%5Btype%20Function%5D&Nconsulta=1&panel=0&DV=&Rut=&boleto=0" + ticketNumber + "&sorteo=0");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -201,8 +213,10 @@ public class ListaBilletes extends ActionBarActivity
                     while ((line = reader.readLine()) != null) {
                         out.append(line);
                     }
-                    System.out.println(out.toString());   //Prints the string content read from input stream
+
                     reader.close();
+                    return out.toString();
+
                 }
                 finally {
                     urlConnection.disconnect();
