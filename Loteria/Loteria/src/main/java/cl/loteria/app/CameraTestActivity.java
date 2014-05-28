@@ -1,34 +1,27 @@
 package cl.loteria.app;
 
-import cl.loteria.app.CameraPreview;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.hardware.Camera;
+import android.hardware.Camera.AutoFocusCallback;
+import android.hardware.Camera.PreviewCallback;
+import android.hardware.Camera.Size;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.widget.FrameLayout;
 import android.widget.Button;
-
-import android.hardware.Camera;
-import android.hardware.Camera.PreviewCallback;
-import android.hardware.Camera.AutoFocusCallback;
-import android.hardware.Camera.Parameters;
-import android.hardware.Camera.Size;
-
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.graphics.ImageFormat;
 
-/* ZBar Class files */
-import net.sourceforge.zbar.ImageScanner;
+import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
+import net.sourceforge.zbar.ImageScanner;
 import net.sourceforge.zbar.Symbol;
 import net.sourceforge.zbar.SymbolSet;
-import net.sourceforge.zbar.Config;
+
+/* ZBar Class files */
 
 public class CameraTestActivity extends Activity
 {
@@ -38,8 +31,11 @@ public class CameraTestActivity extends Activity
 
     TextView scanText;
     Button scanButton;
+    Button submitButton;
 
     ImageScanner scanner;
+
+    String resultado;
 
     private boolean barcodeScanned = false;
     private boolean previewing = true;
@@ -70,6 +66,7 @@ public class CameraTestActivity extends Activity
         scanText = (TextView)findViewById(R.id.scanText);
 
         scanButton = (Button)findViewById(R.id.ScanButton);
+        submitButton = (Button)findViewById(R.id.SubmitButton);
 
         scanButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -80,6 +77,22 @@ public class CameraTestActivity extends Activity
                     mCamera.startPreview();
                     previewing = true;
                     mCamera.autoFocus(autoFocusCB);
+                    ((Button)findViewById(R.id.SubmitButton)).setEnabled(false);
+                    ((Button)findViewById(R.id.ScanButton)).setEnabled(false);
+                }
+            }
+        });
+
+        submitButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                if (barcodeScanned) {
+                    barcodeScanned = false;
+                    ((Button)findViewById(R.id.ScanButton)).setEnabled(false);
+                    releaseCamera();
+                    Intent data = new Intent();
+                    data.putExtra("RESULTADO_CODIGO", resultado);
+                    setResult(RESULT_OK,data);
+                    finish();
                 }
             }
         });
@@ -133,8 +146,11 @@ public class CameraTestActivity extends Activity
 
                 SymbolSet syms = scanner.getResults();
                 for (Symbol sym : syms) {
-                    scanText.setText("barcode result " + sym.getData());
+                    resultado = sym.getData();
+                    scanText.setText("barcode result " + resultado);
                     barcodeScanned = true;
+                    ((Button)findViewById(R.id.SubmitButton)).setEnabled(true);
+                    ((Button)findViewById(R.id.ScanButton)).setEnabled(true);
                 }
             }
         }

@@ -8,19 +8,40 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="cl.loteria.app.CameraTestActivity">
 
-    <TextView
-        android:id="@+id/scanText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <FrameLayout
         android:id="@+id/cameraPreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/ScanButton"
+    <TextView
+        android:id="@+id/scanText"
+        android:layout_alignTop="@id/cameraPreview"
+        android:textColor="#ffffffff"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ScanButton"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/scan_button" />
+
+        <Button
+            android:id="@+id/SubmitButton"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_button" />
+
+    </LinearLayout>
 
 </RelativeLayout>

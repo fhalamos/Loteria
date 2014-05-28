@@ -1,36 +1,25 @@
 package cl.loteria.app;
 
 import android.app.Activity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.provider.MediaStore;
-
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -123,11 +112,15 @@ public class ListaBilletes extends ActionBarActivity
             return true;
         }
         if (id == R.id.action_agregar) {
-            startActivity(new Intent(this, Captura_Billete.class));
+            Intent intent = new Intent(this, Captura_Billete.class);
+            intent.putExtra("NOMBRES_LISTA",Controlador_Lista.getNombres());
+            startActivity(intent);
             return true;
         }
         if (id == R.id.action_capture) {
-            startActivity(new Intent(this, Captura_Billete.class));
+            Intent intent = new Intent(this, Captura_Billete.class);
+            intent.putExtra("NOMBRES_LISTA",Controlador_Lista.getNombres());
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

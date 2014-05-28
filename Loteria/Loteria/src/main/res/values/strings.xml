@@ -10,15 +10,19 @@
     <string name="action_settings">Settings</string>
     <string name="action_borrar">Eliminar Billete</string>
     <string name="action_renombrar">Renombrar Billete</string>
-    <string name="capture_button">Volver a\ntomar foto</string>
+    <string name="capture_button">Fotografíar código</string>
     <string name="cancel_button">Cancelar</string>
     <string name="ok_button">OK</string>
     <string name="capture_title">Ingrese nombre para el boleto</string>
+    <string name="hint_nombre">Nombre del boleto</string>
     <string name="capture_spinner">Elija tipo de boleto</string>
     <string name="title_activity_captura_billete">Ingreso de Billete</string>
     <string name="title_activity_display_imagen">Previsualización</string>
     <string name="back_image_button">Volver</string>
     <string name="title_activity_camera_test">CameraTestActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="scan_button">Retomar</string>
+    <string name="submit_button">Confirmar</string>
+    <string name="codigo_billete">"Capture imagen para obtener código"</string>
+    <string name="header_codigo_billete">"Código del billete:"</string>
 
 </resources>
