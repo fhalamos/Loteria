@@ -33,13 +33,9 @@ public class Controlador_Lista
         }
         BD = new File(root, "BD.txt");
         /*try {
-            FileOutputStream f = new FileOutputStream(BD);
+            FileOutputStream f = new FileOutputStream(BD,true);
             PrintWriter pw = new PrintWriter(f);
-            setBillete("Segundo Billete","98345982795","KINO","Resultado: Ganaste!!");
-            setBillete("Primer Billete","98345982796","Boleto","Resultado: Perdiste!!");
-            setBillete("Tercero Billete","98345982797","Boleto","Resultado: Perdiste!!");
-            setBillete("Cuarto Billete","98345982798","Boleto","Resultado: Perdiste!!");
-            setBillete("Quinto Billete","98345982799","Boleto","Resultado: Perdiste!!");
+            setBillete("nulo","nulo","nulo","nulo");
             pw.flush();
             pw.close();
             f.close();

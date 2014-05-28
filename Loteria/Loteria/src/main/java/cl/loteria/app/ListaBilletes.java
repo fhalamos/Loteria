@@ -63,7 +63,7 @@ public class ListaBilletes extends ActionBarActivity
             // update the main content by replacing fragments
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                    .replace(R.id.container, PlaceholderFragment.newInstance(position))
                     .commit();
         }
         else
@@ -78,7 +78,7 @@ public class ListaBilletes extends ActionBarActivity
     }
 
     public void onSectionAttached(int number) {
-        mTitle = Controlador_Lista.getNombre(number - 1);
+        mTitle = Controlador_Lista.getNombre(number);
     }
 
     public void restoreActionBar() {
@@ -157,18 +157,22 @@ public class ListaBilletes extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState)
         {
-            int index = getArguments().getInt(ARG_SECTION_NUMBER)-1;
+            int index = getArguments().getInt(ARG_SECTION_NUMBER);
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(Controlador_Lista.getResultado(index));
+            if(index !=-1 )
+                textView.setText("Código: "+Controlador_Lista.getCodigo(index)+"\nResultado: "+Controlador_Lista.getResultado(index));
+            else
+                textView.setText("Arrastre pantalla o presione\nvolver o arriba para volver a la lista.");
             return rootView;
         }
 
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((ListaBilletes) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
+            int index = getArguments().getInt(ARG_SECTION_NUMBER);
+            if(index != -1)
+                ((ListaBilletes) activity).onSectionAttached( index );
         }
     }
 

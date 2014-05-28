@@ -30,12 +30,20 @@
                 android:text="@string/capture_title"/>
 
             <EditText
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="16"
                 android:hint="@string/hint_nombre"
                 android:id="@+id/nombre" />
+
+            <TextView
+                android:id="@+id/warning_title"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textColor="#ffff0000"
+                android:text="@string/warning_title"/>
 
             <Spinner
                 android:layout_marginBottom="10dp"
@@ -75,6 +83,13 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel_button"
+                    android:onClick="cancelar" />
+
+                <Button
                     android:id="@+id/ok_button"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -82,13 +97,6 @@
                     android:text="@string/ok_button"
                     android:enabled="false"
                     android:onClick="submit" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancel_button"
-                    android:onClick="cancelar" />
 
             </LinearLayout>
 

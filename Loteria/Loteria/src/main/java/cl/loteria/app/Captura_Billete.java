@@ -62,6 +62,8 @@ public class Captura_Billete extends ActionBarActivity {
 
     public void checkOk()
     {
+        TextView warning = (TextView)findViewById(R.id.warning_title);
+        warning.setText("   ");
         EditText et = (EditText)findViewById(R.id.nombre);
         String msg = et.getText().toString();
         msg = msg.replace("\n","");
@@ -69,12 +71,24 @@ public class Captura_Billete extends ActionBarActivity {
         et.setText(msg);
         boolean repetido = false;
         boolean porte = (msg.length() > 0 && msg.length() <= 16);
-        String[] nombres = getIntent().getStringArrayExtra("NOMBRES_LISTA");
-        for(int i = 1 ; i<nombres.length ; i++)
+        if(!porte)
         {
-            if(msg == nombres[i])
-                repetido = true;
+            warning.setText("Nombre de largo inválido");
         }
+        String[] nombres = getIntent().getStringArrayExtra("NOMBRES_LISTA");
+        if(nombres != null)
+        {
+            for(int i = 1 ; i<nombres.length ; i++)
+            {
+                if(msg == nombres[i])
+                {
+                    repetido = true;
+                    warning.setText("Nombre ya ha sido utilizado");
+                    break;
+                }
+            }
+        }
+        else repetido = false;
         ((Button)findViewById(R.id.ok_button)).setEnabled(codigo && porte && !repetido);
     }
 

@@ -13,7 +13,8 @@
     <string name="capture_button">Fotografíar código</string>
     <string name="cancel_button">Cancelar</string>
     <string name="ok_button">OK</string>
-    <string name="capture_title">Ingrese nombre para el boleto</string>
+    <string name="capture_title">Ingrese nombre para reconocer su boleto</string>
+    <string name="warning_title">   </string>
     <string name="hint_nombre">Nombre del boleto</string>
     <string name="capture_spinner">Elija tipo de boleto</string>
     <string name="title_activity_captura_billete">Ingreso de Billete</string>
