@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="1_armeabi">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/Loteria/src/main/jniLibs/armeabi.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
